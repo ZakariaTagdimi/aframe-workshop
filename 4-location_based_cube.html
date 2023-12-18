@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location based : Display cube in specific location</title>
+</head>
+<body>
+
+    <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+        <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
+        <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 35.6181937; longitude: -5.2728306" scale="10 10 10"></a-entity>
+    </a-scene>
+    
+</body>
+</html>
