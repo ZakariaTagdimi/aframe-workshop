@@ -100,7 +100,7 @@
             ambientLight.setAttribute('intensity',1);
             distanceMsg.style.display = 'none';
             message.style.display = 'block';
-          } else if(event.detail.distance <= 50) {
+          } else if(event.detail.distance <= 5) {
             // 50m以下で近づくほど明るくする、メッセージ非表示、距離表示
             directionLight.setAttribute('intensity',1 - event.detail.distance / 50);
             ambientLight.setAttribute('intensity',1 - event.detail.distance / 50);
