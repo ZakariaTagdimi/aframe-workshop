@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location-based AR.js demo</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
@@ -94,16 +94,16 @@
         const ambientLight = document.getElementById('ambientLight');
         el.addEventListener('gps-entity-place-update-positon', (event) => {
           distanceMsg.textContent = `あと${event.detail.distance}m`;
-          if(event.detail.distance <= 30) {
+          if(event.detail.distance <= 5) {
             // 30m以下で明るくする、メッセージ表示、距離非表示
             directionLight.setAttribute('intensity',1);
             ambientLight.setAttribute('intensity',1);
             distanceMsg.style.display = 'none';
             message.style.display = 'block';
-          } else if(event.detail.distance <= 5) {
+          } else if(event.detail.distance <= 10) {
             // 50m以下で近づくほど明るくする、メッセージ非表示、距離表示
-            directionLight.setAttribute('intensity',1 - event.detail.distance / 50);
-            ambientLight.setAttribute('intensity',1 - event.detail.distance / 50);
+            directionLight.setAttribute('intensity',1 - event.detail.distance / 10);
+            ambientLight.setAttribute('intensity',1 - event.detail.distance / 10);
             distanceMsg.style.display = 'block';
             message.style.display = 'none';
           } else {
