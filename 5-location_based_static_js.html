@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>GeoAR.js demo</title>
-    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
-    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <script>
-        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
-    </script>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Location-based AR.js demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  </head>
 
-<script src="./script.js"></script>
-<body style='margin: 0; overflow: hidden;'>
+    <script>
+        window.addEventListener('load', () => {
+        const el = document.querySelector('[gps-entity-place]');
+        el.addEventListener('gps-entity-place-update-positon', (event) => {
+            if(event.detail.distance < 50) {
+            el.setAttribute('material','color: yellow');
+            } else {
+            el.setAttribute('material','color: red');
+            }
+        });
+        });
+    </script>
+  <body style="margin: 0; overflow: hidden;">
     <a-scene
-       vr-mode-ui="enabled: false"
-		embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; 
-        displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-        <a-camera gps-camera rotation-reader>
-		</a-camera>
-	</a-scene>
-</body>
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-box
+        material="color: red"
+        gps-entity-place="latitude: -5.273296; longitude: 35.617934;"
+        scale="30 30 30"
+      ></a-box>
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+    
+  </body>
 </html>
